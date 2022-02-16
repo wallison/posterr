@@ -1,1 +1,5 @@
-<p>all-posts works!</p>
+<div class="a-p-container">
+  <ng-container *ngFor="let item of postList">
+    <app-post [post]="item"></app-post>
+  </ng-container>
+</div>

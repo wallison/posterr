@@ -17,6 +17,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {ProfileModalComponent} from './components/profile-modal/profile-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ReplyPostModalComponent } from './components/reply-post-modal/reply-post-modal.component';
+import { RepostModalComponent } from './components/repost-modal/repost-modal.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     ProfileComponent,
     TopBarComponent,
     ProfileModalComponent,
+    ReplyPostModalComponent,
+    RepostModalComponent
   ],
   imports: [
     BrowserModule,
@@ -39,12 +43,14 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
-    ProfileModalComponent
+    ProfileModalComponent,
+    ReplyPostModalComponent,
+    RepostModalComponent
   ]
 })
 export class AppModule { }

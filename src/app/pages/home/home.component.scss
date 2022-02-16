@@ -1,5 +1,27 @@
 .home {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
+  .home-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 100vh;
+
+    .home-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .home-container {
+      margin: 10px;
+      overflow-y: auto;
+    }
+
+    .form-action {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 200px;
+    }
+  }
 }

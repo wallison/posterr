@@ -1,0 +1,15 @@
+<div>
+  <div>
+    What do you want to reply?
+  </div>
+  <form [formGroup]="form" (ngSubmit)="reply()" class="home-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Post now</mat-label>
+      <textarea formControlName="post" matInput placeholder="What are you thinking that?" [maxLength]="777"></textarea>
+    </mat-form-field>
+    <div class="form-action">
+      <mat-label>Characters: {{countCharacters}}</mat-label>
+      <button type="submit" mat-raised-button color="primary">Reply</button>
+    </div>
+  </form>
+</div>
