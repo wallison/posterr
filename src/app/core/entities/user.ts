@@ -1,8 +1,8 @@
 export class User {
-  public id: number;
-  public username: string;
-  public createdAt: Date;
-  public followingUsernames: string[];
+  id: number;
+  username: string;
+  createdAt: Date;
+  followingUsernames: string[];
   public constructor(payload: {username: string,
     createdAt: Date, id?: number, avatarUrl?: string,
     followingUsernames?: string[]}) {
