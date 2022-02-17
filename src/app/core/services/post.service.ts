@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import {Post} from '../entities/post';
 import {UserService} from './user.service';
 import {BehaviorSubject, Observable} from 'rxjs';
+import {User} from '../entities/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  private lastId = 1;
+  private lastId = 13;
   private $myPosts = [
     (new Post({createdBy: this.userService.$me, createdAt: new Date(), postTest: 'rest', id: 1})),
     (new Post({createdBy: this.userService.$me, createdAt: new Date(), postTest: 'rest rest', id: 2})),
@@ -15,7 +16,7 @@ export class PostService {
     (new Post({createdBy: this.userService.$me, createdAt: new Date(), postTest: 'rest test', id: 7})),
     (new Post({createdBy: this.userService.$me, createdAt: new Date(), postTest: 'rest $@test', id: 8}))
   ];
-  private $followingPosts = [
+  private $otherPosts = [
     (new Post({createdBy: this.userService.$users[1], createdAt: new Date(), postTest: 'rest1', id: 3})),
     (new Post({createdBy: this.userService.$users[2], createdAt: new Date(), postTest: 'rest2', id: 4})),
     (new Post({createdBy: this.userService.$users[3], createdAt: new Date(), postTest: 'rest3', id: 6})),
@@ -31,17 +32,19 @@ export class PostService {
 
   followingPosts(): Observable<Post[]>  {
     return new Observable<Post[]> ((observer) => {
-      const result = this.$followingPosts
+      const result = this.$otherPosts.filter((p) =>
+        this.userService.$me.followingUsernames.includes(p.createdBy.username))
         .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
       observer.next(result);
       observer.complete();
     });
   }
 
-  myPosts(): Observable<Post[]> {
+  userPosts(user: User): Observable<Post[]> {
     return new Observable<Post[]> ((observer) => {
-      const result = this.$myPosts
-        .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+      const result = [...this.$otherPosts, ...this.$myPosts]
+        .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+        .filter((p) => p.createdBy.username === user.username);
       observer.next(result);
       observer.complete();
     });
@@ -49,7 +52,7 @@ export class PostService {
 
   allPosts(): Observable<Post[]> {
     return new Observable<Post[]>(observer => {
-      const result = [...this.$followingPosts, ...this.$myPosts]
+      const result = [...this.$otherPosts, ...this.$myPosts]
         .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
       observer.next(result);
       observer.complete();

@@ -6,6 +6,7 @@ import {HomeRoutingModule} from './home-routing.module';
 import {PostComponent} from '../../components/post/post.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {MatButtonModule} from '@angular/material/button';
     CommonModule,
     HomeRoutingModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ],
   exports: [PostComponent]
 })

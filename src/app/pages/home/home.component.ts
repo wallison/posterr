@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {HOME_ROUTES} from '../../core/constants';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormBuilder, FormGroup} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import {ProfileModalComponent} from '../../components/profile-modal/profile-modal.component';
 import {Subscription} from 'rxjs';
@@ -16,16 +15,16 @@ import {UserService} from '../../core/services/user.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   followingPage = false;
-  form: FormGroup;
   routeQueryParams: Subscription;
 
-  constructor(private router: Router, private fb: FormBuilder,
-              private dialog: MatDialog, private route: ActivatedRoute,
+  constructor(private router: Router,
+              private dialog: MatDialog,
+              private route: ActivatedRoute,
               private postService: PostService,
               private userService: UserService) {
     this.routeQueryParams = route.queryParams.subscribe(params => {
       if (params?.username) {
-        this.openProfile();
+        this.openProfile(params.username);
       }
     });
   }
@@ -34,7 +33,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (this.router.url.includes(HOME_ROUTES.FOLLOWING)) {
       this.followingPage = true;
     }
-    this.form = this.fb.group({post: ['', []]});
   }
 
   changePage(): void {
@@ -56,23 +54,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.router.navigate([this.router.url], {queryParams});
   }
 
-  get countCharacters(): number {
-    return this.form.getRawValue().post?.length;
-  }
-
-  openProfile(): void {
+  openProfile(username: string): void {
     const dialogRef = this.dialog.open(ProfileModalComponent);
+    dialogRef.componentInstance.username = username;
     dialogRef.afterClosed().subscribe(() => {
       const url = this.router.url.split('?')[0];
       this.router.navigate([url]);
     });
-  }
-  createPost(): void {
-    if (this.countCharacters > 0) {
-      this.postService.createPost(this.form.getRawValue().post).subscribe(next => {
-        this.form = this.fb.group({post: ['', []]});
-      });
-    }
   }
 
   ngOnDestroy(): void {

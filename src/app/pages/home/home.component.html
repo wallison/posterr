@@ -6,16 +6,7 @@
       <mat-label>All / Following</mat-label>
     </div>
     <mat-slide-toggle [(ngModel)]="followingPage" (change)="changePage()">See following!</mat-slide-toggle>
-    <form [formGroup]="form" (ngSubmit)="createPost()" class="home-form">
-      <mat-form-field class="example-full-width">
-        <mat-label>Post now</mat-label>
-        <textarea formControlName="post" matInput placeholder="What are you thinking today?" [maxLength]="777"></textarea>
-      </mat-form-field>
-      <div class="form-action">
-        <mat-label>Characters: {{countCharacters}}</mat-label>
-        <button type="submit" mat-raised-button color="primary">Create post</button>
-      </div>
-    </form>
+    <app-create-post-box></app-create-post-box>
 
     <div class="home-container">
       <router-outlet></router-outlet>

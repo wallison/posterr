@@ -1,1 +1,18 @@
-<p>profile works!</p>
+<div>
+  <div class="head-profile">
+    <mat-icon style="width: 40px;height: 40px;font-size: 40px">account_circle</mat-icon>
+    <div class="profile-name">{{ user.username }}</div>
+    <div>Joined at {{ user.createdAt | date:'MMMM dd, yyyy' }}</div>
+  </div>
+  <div class="details">
+    <div>Following ({{followingCount}}) Followers ({{followersCount}})</div>
+    <div *ngIf="showFollowActions" style="display: flex;align-content: center">
+      <div class="p-tag" *ngIf="isFollowing">Following</div>
+
+      <button mat-button *ngIf="!isFollowing" (click)="follow()">Follow</button>
+      <button mat-button *ngIf="isFollowing" (click)="unfollow()">Unfollow</button>
+    </div>
+  </div>
+</div>
+<app-create-post-box *ngIf="showPostBox"></app-create-post-box>
+<app-profile-posts [user]="user"></app-profile-posts>

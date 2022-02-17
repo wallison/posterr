@@ -1,0 +1,10 @@
+<form [formGroup]="form" (ngSubmit)="createPost()" class="post-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Post now</mat-label>
+    <textarea formControlName="post" matInput placeholder="What are you thinking today?" [maxLength]="777"></textarea>
+  </mat-form-field>
+  <div class="form-action">
+    <mat-label>Characters: {{countCharacters}}</mat-label>
+    <button type="submit" mat-raised-button color="primary">Create post</button>
+  </div>
+</form>

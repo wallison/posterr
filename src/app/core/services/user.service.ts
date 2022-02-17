@@ -1,29 +1,34 @@
 import { Injectable } from '@angular/core';
 import {User} from '../entities/user';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {Post} from '../entities/post';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   $me = (new User({username: 'wallison', createdAt: new Date(), id: 1,
-    avatarUrl: 'https://material.angular.io/assets/img/examples/shiba1.jpg' }));
+    followingUsernames: ['fernando', 'vicki', 'david', 'helder', 'rick'] }));
   $users = [
     (new User({username: 'wallison',
       createdAt: new Date(),
-      id: 1 })
+      id: 1,
+      followingUsernames: ['fernando', 'carlos', 'vicki', 'david', 'helder', 'rick']})
     ),
     (new User({username: 'fernando',
         createdAt: new Date(),
-        id: 2 })
+        id: 2,
+        followingUsernames: ['carlos', 'vicki', 'wallison']})
     ),
     (new User({username: 'carlos',
         createdAt: new Date(),
-        id: 3 })
+        id: 3,
+        followingUsernames: ['fernando', 'carlos', 'vicki', 'wallison']})
     ),
     (new User({username: 'vicki',
         createdAt: new Date(),
-        id: 4 })
+        id: 4,
+        followingUsernames: ['fernando', 'wallison']})
     ),
     (new User({username: 'david',
         createdAt: new Date(),
@@ -38,28 +43,25 @@ export class UserService {
         id: 7 })
     ),
   ];
-  constructor() { }
+
+  public followingUserObserver: BehaviorSubject<User[]> = new BehaviorSubject(null);
+  constructor() {}
 
   follow(user: User): void {
     if (!this.isFollowing(user)) {
       this.$me.followingUsernames.push(user.username);
+      this.followingUserObserver.next(this.$users);
     }
   }
 
   unfollow(user: User): void {
     if (this.isFollowing(user)) {
       this.$me.followingUsernames = this.$me.followingUsernames.filter(username => user.username !== username);
+      this.followingUserObserver.next(this.$users);
     }
   }
 
   isFollowing(user: User): boolean {
     return this.$me.followingUsernames.indexOf(user.username) >= 0;
-  }
-  findByUsername(username: string): Observable<User> {
-    return new Observable<User>((observer) => {
-      const result = this.$users.find((user) => user.username === username);
-      observer.next(result);
-      observer.complete();
-    });
   }
 }

@@ -5,7 +5,7 @@
   <form [formGroup]="form" (ngSubmit)="reply()" class="home-form">
     <mat-form-field class="example-full-width">
       <mat-label>Post now</mat-label>
-      <textarea formControlName="post" matInput placeholder="What are you thinking that?" [maxLength]="777"></textarea>
+      <textarea formControlName="post" matInput placeholder="What do you think about this?" [maxLength]="777"></textarea>
     </mat-form-field>
     <div class="form-action">
       <mat-label>Characters: {{countCharacters}}</mat-label>

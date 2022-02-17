@@ -19,6 +19,8 @@ import {ProfileModalComponent} from './components/profile-modal/profile-modal.co
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReplyPostModalComponent } from './components/reply-post-modal/reply-post-modal.component';
 import { RepostModalComponent } from './components/repost-modal/repost-modal.component';
+import { CreatePostBoxComponent } from './components/create-post-box/create-post-box.component';
+import { ProfilePostsComponent } from './components/profile-posts/profile-posts.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { RepostModalComponent } from './components/repost-modal/repost-modal.com
     TopBarComponent,
     ProfileModalComponent,
     ReplyPostModalComponent,
-    RepostModalComponent
+    RepostModalComponent,
+    CreatePostBoxComponent,
+    ProfilePostsComponent
   ],
   imports: [
     BrowserModule,

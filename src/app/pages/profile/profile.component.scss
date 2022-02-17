@@ -1,0 +1,26 @@
+.head-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.p-tag {
+  color: #673ab7;
+  font-weight: bold;
+  padding: 5px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-name {
+  font-size: 20px;
+  font-weight: bold;
+}
