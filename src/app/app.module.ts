@@ -21,6 +21,7 @@ import { ReplyPostModalComponent } from './components/reply-post-modal/reply-pos
 import { RepostModalComponent } from './components/repost-modal/repost-modal.component';
 import { CreatePostBoxComponent } from './components/create-post-box/create-post-box.component';
 import { ProfilePostsComponent } from './components/profile-posts/profile-posts.component';
+import { PostErrorModalComponent } from './components/post-error-modal/post-error-modal.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ProfilePostsComponent } from './components/profile-posts/profile-posts.
     ReplyPostModalComponent,
     RepostModalComponent,
     CreatePostBoxComponent,
-    ProfilePostsComponent
+    ProfilePostsComponent,
+    PostErrorModalComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,8 @@ import { ProfilePostsComponent } from './components/profile-posts/profile-posts.
   entryComponents: [
     ProfileModalComponent,
     ReplyPostModalComponent,
-    RepostModalComponent
+    RepostModalComponent,
+    PostErrorModalComponent
   ]
 })
 export class AppModule { }

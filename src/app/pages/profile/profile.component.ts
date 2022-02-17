@@ -10,12 +10,20 @@ import {UserService} from '../../core/services/user.service';
 })
 export class ProfileComponent implements OnInit {
   @Input() user: User;
+  postCount = 0;
 
   constructor(private postService: PostService,
               private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.isFollowing(this.user)
+    this.userService.isFollowing(this.user);
+    this.updateCountPosts();
+    this.postService.postObserver.asObservable()
+      .subscribe(() => this.updateCountPosts());
+  }
+  private updateCountPosts(): void {
+    this.postService.countUserPosts(this.user)
+      .subscribe((result) => this.postCount = result );
   }
 
   get followingCount(): number {

@@ -7,39 +7,39 @@ import {Post} from '../entities/post';
   providedIn: 'root'
 })
 export class UserService {
-  $me = (new User({username: 'wallison', createdAt: new Date(), id: 1,
+  $me = (new User({username: 'wallison', createdAt: new Date(2022, 1, 9), id: 1,
     followingUsernames: ['fernando', 'vicki', 'david', 'helder', 'rick'] }));
   $users = [
     (new User({username: 'wallison',
-      createdAt: new Date(),
+      createdAt: new Date(2022, 1, 9),
       id: 1,
       followingUsernames: ['fernando', 'carlos', 'vicki', 'david', 'helder', 'rick']})
     ),
     (new User({username: 'fernando',
-        createdAt: new Date(),
+        createdAt: new Date(2022, 1, 9),
         id: 2,
         followingUsernames: ['carlos', 'vicki', 'wallison']})
     ),
     (new User({username: 'carlos',
-        createdAt: new Date(),
+        createdAt: new Date(2022, 1, 9),
         id: 3,
         followingUsernames: ['fernando', 'carlos', 'vicki', 'wallison']})
     ),
     (new User({username: 'vicki',
-        createdAt: new Date(),
+        createdAt: new Date(2022, 1, 9),
         id: 4,
         followingUsernames: ['fernando', 'wallison']})
     ),
     (new User({username: 'david',
-        createdAt: new Date(),
+        createdAt: new Date(2022, 1, 9),
         id: 5 })
     ),
     (new User({username: 'helder',
-        createdAt: new Date(),
+        createdAt: new Date(2022, 1, 9),
         id: 6 })
     ),
     (new User({username: 'rick',
-        createdAt: new Date(),
+        createdAt: new Date(2022, 1, 9),
         id: 7 })
     ),
   ];
